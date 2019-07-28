@@ -162,44 +162,96 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
         child: Stack(
       children: <Widget>[
-        Card(
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0))), //设置圆角
-            margin: EdgeInsets.all(10),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(8),
-                      child:
-                          Image.network(article.thumb, width: 100, height: 100),
-                    ),
-                    new Flexible(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                          Text(article.title,
-                              maxLines: 2,
+        Hero(
+          tag: "index" + article.urlshow,
+          placeholderBuilder: (context, size, widget) {
+            return Container(
+                height: size.height,
+                width: size.width,
+                child: Card(
+                    shape: const RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.all(Radius.circular(5.0))), //设置圆角
+                    margin: EdgeInsets.all(10),
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Image.network(article.thumb,
+                                  width: 100, height: 100),
+                            ),
+                            new Flexible(
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                  Text(article.title,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                      style: new TextStyle(
+                                          color: Colors.black, fontSize: 16)),
+                                  Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 5.0)),
+                                  Text(
+                                    ParseDom.getInnerText(article.hometext),
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
+                                    style: new TextStyle(
+                                        color: Colors.grey, fontSize: 14),
+                                  )
+                                ]))
+                          ]),
+                    )));
+          },
+          child: Card(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))), //设置圆角
+              margin: EdgeInsets.all(10),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Image.network(article.thumb,
+                            width: 100, height: 100),
+                      ),
+                      new Flexible(
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                            Text(article.title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: true,
+                                style: new TextStyle(
+                                    color: Colors.black, fontSize: 16)),
+                            Padding(
+                                padding: const EdgeInsets.only(bottom: 5.0)),
+                            Text(
+                              ParseDom.getInnerText(article.hometext),
+                              maxLines: 3,
                               overflow: TextOverflow.ellipsis,
                               softWrap: true,
                               style: new TextStyle(
-                                  color: Colors.black, fontSize: 16)),
-                          Padding(padding: const EdgeInsets.only(bottom: 5.0)),
-                          Text(
-                            ParseDom.getInnerText(article.hometext),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: true,
-                            style:
-                                new TextStyle(color: Colors.grey, fontSize: 14),
-                          )
-                        ]))
-                  ]),
-            )),
+                                  color: Colors.grey, fontSize: 14),
+                            )
+                          ]))
+                    ]),
+              )),
+        ),
         Positioned.fill(
             child: Material(
           color: Colors.transparent,
