@@ -13,17 +13,32 @@ class HeroDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Cnbeta"),
-      ),
+//      appBar: AppBar(
+//        title: Text("Cnbeta"),
+//      ),
       body: CustomScrollView(slivers: <Widget>[
-        SliverToBoxAdapter(
-          child: Hero(
-            tag: "home" + this.article.urlshow,
-            transitionOnUserGestures: true,
-            child: Image.network(this.article.thumb, fit: BoxFit.fitWidth),
-          ),
-        ),
+        SliverAppBar(
+            expandedHeight: 180.0,
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.white),
+            floating: true,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.pin,
+              centerTitle: true,
+              background: Hero(
+                tag: this.article.tag,
+                transitionOnUserGestures: true,
+                child: Image.network(this.article.thumb, fit: BoxFit.fitWidth),
+              ),
+            )),
+//        SliverToBoxAdapter(
+//          child: Hero(
+//            tag: "home" + this.article.urlshow,
+//            transitionOnUserGestures: true,
+//            child: Image.network(this.article.thumb, fit: BoxFit.fitWidth),
+//          ),
+//        ),
         SliverToBoxAdapter(
             child: FutureBuilder(
                 builder: _futureBuilder, future: getHtml(article.urlshow))),

@@ -17,8 +17,11 @@ class DetailPage extends StatelessWidget {
         title: Text("Cnbeta"),
       ),
       body: Container(
-          child: FutureBuilder(
-              builder: _futureBuilder, future: getHtml(article.urlshow))),
+        child: Hero(
+            tag: "index" + this.article.urlshow,
+            child: FutureBuilder(
+                builder: _futureBuilder, future: getHtml(article.urlshow))),
+      ),
     );
   }
 
